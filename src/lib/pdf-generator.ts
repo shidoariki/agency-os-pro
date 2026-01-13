@@ -58,7 +58,7 @@ export const generatePDF = (data: any) => {
   const finalY = doc.lastAutoTable.finalY + 15;
   
   doc.setDrawColor(240);
-  doc.setFillColor(250);
+  doc.setFillColor("250");
   doc.roundedRect(120, finalY, 76, 50, 3, 3, 'FD');
 
   const printLine = (label: string, value: string, y: number, isBold = false) => {
