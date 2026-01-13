@@ -34,10 +34,23 @@ export const generatePDF = (data: any) => {
   autoTable(doc, {
     startY: startY,
     head: [['SERVICE', 'UNIT PRICE', 'QTY', 'LINE TOTAL']],
-    body: data.items.map((i: any) => [i.name, `$${i.price}`, i.quantity, `$${i.price * i.quantity}`]),
+    body: data.items.map((i: any) => [
+      i.name, 
+      `${data.currencySymbol}${i.customPrice || i.price}`, 
+      i.quantity, 
+      `${data.currencySymbol}${(i.customPrice || i.price) * i.quantity}`
+    ]),
     theme: 'plain',
-    headStyles: { textColor: [0, 0, 0], fontStyle: 'bold', borderBottom: { color: [200, 200, 200], width: 0.1 } },
-    styles: { fontSize: 9, cellPadding: 5 }
+    headStyles: { 
+      textColor: [0, 0, 0], 
+      fontStyle: 'bold',
+      lineWidth: 0.1, // This creates the border line
+      lineColor: [200, 200, 200] 
+    },
+    styles: { 
+      fontSize: 9, 
+      cellPadding: 5 
+    }
   });
 
   // 4. SUMMARY BOX
